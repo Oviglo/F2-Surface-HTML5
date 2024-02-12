@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="img/fav.png" type="image/x-icon">
+        <title>Surface Object for HTML5</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+                Surface for HTML5
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#differences">Differences</a></li>
+                    <li><a href="#unimplemented">Unimplemented features</a></li>
+                    <li><a href="#issues">Know issues</a></li>
+                    <li><a href="#changeslog">Changes log</a></li>
+                    <li><a href="#thanks">Thanks</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="header">
+                    <img alt="Surface icon" src="img/icon_92.png"/>
+                    <h1>Surface for HTML5</h1>
+                    <small>Writed by Loïc OVIGNE - <a href="https://www.oviglo.fr" target="_blank" >www.oviglo.fr</a></small><br/>
+                    <small>Original Windows extension by Lukas Meller (Looki)</small>
+                    <div class="exporters">
+                        <img src="img/windows-brands.svg" alt="windows"/> <img src="img/html5-brands.svg" alt="html5"/>
+                    </div>
+                    <div class="center">
+                        <a href="https://trello.com/b/FVYGVm03/oviglo-clickteam-fusion-extensions" target="_blank" >Join Trello</a>
+                    </div>
+                    
+                </div>
+                
+                <section id="about">
+                    <h2>About</h2>
+                    <p>Surface object is a powerfull extension for manipulate and display image data</p> Examples of use
+                    <ul>
+                        <li>Real-time in-game effects or graphics </li>
+                        <li>Drawing shapes with color, gradient or pattern</li>
+                        <li>Blit part of images</li>
+                    </ul>
+                    <p><strong>To use this HTML5 version, you need to install original Surface extension available in Fusion's Extension Manager</strong></p>
+                </section>
+
+                <section id="differences">
+                    <h2>Differences with Windows version</h2>
+                    This version use Js Canvas object, the rendering is executed by the browser instead of Windows library. There are many difference of rendering:
+                    <h3>Anti aliasing</h3>
+                    The browser use automatically antialiasing to draw shapes, only simple rectange, line and ellipse with simple color are generate pixel by pixel to have no bluring edges<br/>
+                    <div class="center"><img src="img/antialiasing.png" alt="Anti aliasing"/></div>
+                    <h3>Save image to file</h3>
+                    Javascript cannot save files in user computer, the "Save to file" action open a new tab in browser with image
+                    <h3>Transparent color</h3>
+                    In Fusion, transparent color and alpha channel are 2 differents things, in Html5 there are only alpha channel. The transparent color is simulate with 0 alpha value.
+                </section>
+
+                <section id="unimplemented">
+                    <h2>Unimplemented features</h2>
+                    Due to the difference between engines some features are not implemented in HTML5 export:
+                    <h3>Blit</h3>
+                        <ul>
+                            <li>Blit from/onto Overlay</li>
+                            <li>Blit from/onto Image reference</li>
+                            <li>Blit from/onto Window handle</li>
+                            <li>Blit rotation quality</li>
+                        </ul>
+                    <h3>HWA</h3>
+                    <ul>
+                        <li>Convert to bitmap</li>
+                        <li>Convert to HWA texture</li>
+                        <li>Convert to HWA target</li>
+                    </ul>
+                    <h3>Text</h3>
+                    <ul>
+                        <li>Text clipping</li>
+                        <li>Word break</li>
+                        <li>Ellipsis</li>
+                        <li>Strike and underline</li>
+                    </ul>
+                    <h3>Other</h3>
+                    <ul>
+                        <li>Lock/Unlock buffer</li>
+                        <li>Write bytes</li>
+                        <li>Add/Insert image reference</li>
+                        <li>All extension filter expressions</li>
+                    </ul>
+                </section>
+
+                <section id="issues">
+                    <h2>Know issues</h2>
+                    <ul>
+                        <li>Blit effect with rotation: there are a small display bug</li>
+                    </ul>
+                </section>
+
+                <section id="changeslog">
+                    <h2>2020-05-19</h2>
+                    <ul>
+                        <li>The lines are now drawn with rounded ends</li>
+                        <li>Crash when draw line with 1 pixel width</li>
+                        <li>Better performance on blitting with blend effects (OR, AND)</li>
+                        <li>Draw line with pattern crashed</li>
+                        <li>Minors fixes</li>
+                    </ul>
+                </section>
+
+                <section id="thanks">
+                    <h2>Thanks</h2>
+                    <p>Thanks to Lukas Meller (Looki) for his autorisation to export his extension</p>
+                </section>
+
+               
+                <footer>
+                    Surface for HTML5 - An extension for <a href="https://www.clickteam.com" target="_blank">Clickteam Fusion 2.5</a> - By Loïc OVIGNE (<a href="https://www.oviglo.fr" target="_blank">oviglo.fr</a>)
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>
