@@ -1343,6 +1343,14 @@ OSurface.prototype = {
         tmpSourceContext.canvas.width = dw;
         tmpSourceContext.canvas.height = dh;
 
+        let goodQuality = this.blit.stretchMode >= 2;
+        tmpSourceContext["mozImageSmoothingEnabled"] = goodQuality;
+        tmpSourceContext["webkitImageSmoothingEnabled"] = goodQuality;
+        tmpSourceContext["msImageSmoothingEnabled"] = goodQuality;
+        tmpSourceContext["imageSmoothingEnabled"] = goodQuality;
+        if (goodQuality) {
+            tmpSourceContext["imageSmoothingQuality"] = "high";
+        }
         tmpSourceContext.drawImage(sourceCanvas, sx, sy, sw, sh, 0, 0, dw, dh);
 
         switch (this.blit.effect) {
@@ -1363,6 +1371,13 @@ OSurface.prototype = {
                 var tmpDestContext = document.createElement("canvas").getContext("2d");
                 tmpDestContext.canvas.width = dw;
                 tmpDestContext.canvas.height = dh;
+                tmpDestContext["mozImageSmoothingEnabled"] = goodQuality;
+                tmpDestContext["webkitImageSmoothingEnabled"] = goodQuality;
+                tmpDestContext["msImageSmoothingEnabled"] = goodQuality;
+                tmpDestContext["imageSmoothingEnabled"] = goodQuality;
+                if (goodQuality) {
+                    tmpDestContext["imageSmoothingQuality"] = "high";
+                }
                 tmpDestContext.translate(hotX, hotY);
                 tmpDestContext.rotate(angle);
                 tmpDestContext.translate(-hotX, -hotY);

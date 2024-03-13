@@ -616,6 +616,11 @@ OSurface.prototype = {
         var t = document.createElement("canvas").getContext("2d");
         t.canvas.width = h;
         t.canvas.height = e;
+        let gq = this.blit.stretchMode >= 2;
+        t["mozImageSmoothingEnabled"] = t["webkitImageSmoothingEnabled"] = t["msImageSmoothingEnabled"] = t["imageSmoothingEnabled"] = gq;
+        if (gq) {
+            t["imageSmoothingQuality"] = "high";
+        }
         t.drawImage(b, m, n, k, l, 0, 0, h, e);
         switch (this.blit.effect) {
             case OSurface.BLIT_EFFECT_AND:
@@ -626,7 +631,12 @@ OSurface.prototype = {
         }
         if ("" != this.blit.callback || d) {
             a.save();
-            0 != r ? (b = document.createElement("canvas").getContext("2d"), b.canvas.width = h, b.canvas.height = e, b.translate(p, q), b.rotate(r), b.translate(-p, -q), b.drawImage(a.canvas, f - p, g - q, h, e, 0, 0, h, e), b = b.getImageData(0, 0, h, e)) : b = a.getImageData(f - p, g - q, h, e);
+			let b = b = document.createElement("canvas").getContext("2d");
+			b["mozImageSmoothingEnabled"] = b["webkitImageSmoothingEnabled"] = b["msImageSmoothingEnabled"] = b["imageSmoothingEnabled"] = gq;
+			if (gq) {
+				b["imageSmoothingQuality"] = "high";
+			}
+            0 != r ? (b.canvas.width = h, b.canvas.height = e, b.translate(p, q), b.rotate(r), b.translate(-p, -q), b.drawImage(a.canvas, f - p, g - q, h, e, 0, 0, h, e), b = b.getImageData(0, 0, h, e)) : b = a.getImageData(f - p, g - q, h, e);
             b = b.data;
             k = t.getImageData(0, 0, h, e);
             l = k.data;
