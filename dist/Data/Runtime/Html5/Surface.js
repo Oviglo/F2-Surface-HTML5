@@ -298,7 +298,7 @@ OSurface.prototype = {
         a.context.drawImage(c.canvas, -d, 0);
         this.redraw();
     }, setAngle: function (b) {
-        img.rotation = b;
+        this.imageList[this.selectedImage].rotation = b;
         this.redraw();
     }, setContrast: function (b) {
         for (var a = this.imageList[this.selectedImage], d = a.context.getImageData(0, 0, a.canvas.width, a.canvas.width), c = d.data, f = 0; f < c.length; f += 4) {

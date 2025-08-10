@@ -669,8 +669,7 @@ OSurface.prototype = {
     },
 
     setAngle(degrees) {
-
-        img.rotation = degrees;
+        this.imageList[this.selectedImage].rotation = degrees;
         this.redraw();
     },
 
