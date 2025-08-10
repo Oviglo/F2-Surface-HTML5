@@ -217,7 +217,7 @@ OSurface.prototype = {
         *********************************************************************************/
         /*var newImage = new CImage();
         newImage.width = context.canvas.width;
-        newImage.height = context.canvas.height;   
+        newImage.height = context.canvas.height;
         var img = new Image();
         img.src = context.canvas.toDataURL();
         newImage.img = img;
@@ -423,7 +423,7 @@ OSurface.prototype = {
         var oldRed = (oldColor >>> 16) & 0xFF,
             oldGreen = (oldColor >>> 8) & 0xFF,
             oldBlue = oldColor & 0xFF
-        newRed = (newColor >>> 16) & 0xFF,
+        var newRed = (newColor >>> 16) & 0xFF,
             newGreen = (newColor >>> 8) & 0xFF,
             newBlue = newColor & 0xFF;
 
@@ -961,7 +961,7 @@ OSurface.prototype = {
 
         var tempContext = document.createElement("canvas").getContext("2d");
         if ((patternName == CServices.getColorString(this.imageList[this.selectedImage].transparentColor))) {
-            //tempContext.globalAlpha = 1; 
+            //tempContext.globalAlpha = 1;
             this.context["globalCompositeOperation"] = "destination-out";
         }
         borderSize *= 0.6; // Fix to display same as windows runtime
@@ -1672,7 +1672,7 @@ OSurface.prototype = {
         this.deleteAllPoints();
         var step = (2 * 3.1415926535) / nbEdges;
 
-        for (i = 0; i < nbEdges; i++) {
+        for (var i = 0; i < nbEdges; i++) {
             var xPos, yPos;
             xPos = (Math.cos(step * i) * radius);
             yPos = (Math.sin(step * i) * radius);
@@ -1684,7 +1684,7 @@ OSurface.prototype = {
     createStar(innerRadius, outerRadius, nbPikes) {
         var step = (2 * 3.1415926535) / (nbPikes * 2);
 
-        for (i = 0; i < nbPikes * 2; i++) {
+        for (var i = 0; i < nbPikes * 2; i++) {
             var xPos, yPos;
 
             if (i % 2 == 0) {
@@ -2064,7 +2064,7 @@ OSurface.prototype = {
         if ((op == '/' || op == '%') && value == 0) {
             value = 0.001;
         }
-        newVal = pixel;
+        var newVal = pixel;
         switch (op) {
             case '+':
                 newVal = pixel + value;
@@ -2244,7 +2244,7 @@ CRunSurface.ACT_DRAW_ELLIPSE_WITH_SIZE_AND_COLOR_THICKNESS = 101; // OK
 CRunSurface.ACT_DRAW_ELLIPSE_WITH_SIZE_AND_PATTERN = 102; // OK
 CRunSurface.ACT_CREATE_REGULAR_POLYGON = 103; // OK
 CRunSurface.ACT_SKYP_REDRAW = 104; // OK
-CRunSurface.ACT_SET_BLIT_DESTINATION = 105; // OK 
+CRunSurface.ACT_SET_BLIT_DESTINATION = 105; // OK
 CRunSurface.ACT_CONVERT_TO_GRAYSCALE = 106; // OK
 CRunSurface.ACT_CREATE_RADIAL_GRADIENT_PATTERN = 107; // OK
 CRunSurface.ACT_SET_BLIT_EFFECT = 108; // NOT IMPLEMENTED
@@ -2379,7 +2379,7 @@ CRunSurface.EXP_IMG_HOT_X = 60; // OK
 CRunSurface.EXP_IMG_HOT_Y = 61; // OK
 CRunSurface.EXP_HOT_X = 62; // OK
 CRunSurface.EXP_HOT_Y = 63; // OK
-CRunSurface.EXP_IMG_TRANSP_COLOR = 64; // OK 
+CRunSurface.EXP_IMG_TRANSP_COLOR = 64; // OK
 CRunSurface.EXP_CALLBACK_DEST_ALPHA = 65; // OK
 CRunSurface.EXP_ADD = 66; // OK
 CRunSurface.EXP_SUBSTRACT = 67; // OK
@@ -2488,7 +2488,7 @@ CRunSurface.prototype = CServices.extend(new CRunExtension(),
             this.oSurf.selectLast = file.readAByte() == 1;
 
             // Font Text
-            file.skipBytes(3); // WHY ? 
+            file.skipBytes(3); // WHY ?
             var font = this.ho.hoAdRunHeader.rhApp.bUnicode ? file.readLogFont() : file.readLogFont16();
             this.oSurf.textParams.family = font.lfFaceName;
             this.oSurf.textParams.size = font.lfHeight + "pt";
@@ -3433,7 +3433,7 @@ CRunSurface.prototype = CServices.extend(new CRunExtension(),
 
                 case CRunSurface.ACT_ADD_BACKDROP:
                     var options = act.getParamAltValue(this.rh, 0);
-                    imgCanvas = this.oSurf.imageList[this.oSurf.selectedImage].canvas;
+                    var imgCanvas = this.oSurf.imageList[this.oSurf.selectedImage].canvas;
                     var cImage = new CImage;
                     var image = new Image();
                     image.src = imgCanvas.toDataURL();
