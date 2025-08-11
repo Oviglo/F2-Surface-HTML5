@@ -172,9 +172,7 @@ OSurface.prototype = {
         if (this.hasImageIndex(b)) {
             var c = a >>> 16 & 255, f = a >>> 8 & 255;
             a &= 255;
-            newRed = d >>> 16 & 255;
-            newGreen = d >>> 8 & 255;
-            newBlue = d & 255;
+            var newRed = d >>> 16 & 255, newGreen = d >>> 8 & 255, newBlue = d & 255;
             for (var g = this.imageList[b].context.getImageData(0, 0, this.imageList[b].getWidth(), this.imageList[b].getHeight()), h = 0; h < g.data.length; h += 4) {
                 g.data[h] == c && g.data[h + 1] == f && g.data[h + 2] == a && (g.data[h] = newRed, g.data[h + 1] = newGreen, g.data[h + 2] = newBlue);
             }
@@ -298,7 +296,7 @@ OSurface.prototype = {
         a.context.drawImage(c.canvas, -d, 0);
         this.redraw();
     }, setAngle: function (b) {
-        img.rotation = b;
+        this.imageList[this.selectedImage].rotation = b;
         this.redraw();
     }, setContrast: function (b) {
         for (var a = this.imageList[this.selectedImage], d = a.context.getImageData(0, 0, a.canvas.width, a.canvas.width), c = d.data, f = 0; f < c.length; f += 4) {
@@ -631,7 +629,7 @@ OSurface.prototype = {
         }
         if ("" != this.blit.callback || d) {
             a.save();
-			let b = b = document.createElement("canvas").getContext("2d");
+			let b = document.createElement("canvas").getContext("2d");
 			b["mozImageSmoothingEnabled"] = b["webkitImageSmoothingEnabled"] = b["msImageSmoothingEnabled"] = b["imageSmoothingEnabled"] = gq;
 			if (gq) {
 				b["imageSmoothingQuality"] = "high";
@@ -748,12 +746,12 @@ OSurface.prototype = {
     }, createRegularPolygon: function (b, a) {
         this.deleteAllPoints();
         var d = 6.283185307 / a;
-        for (i = 0; i < a; i++) {
+        for (var i = 0; i < a; i++) {
             this.addPoint(Math.cos(d * i) * b, Math.sin(d * i) * b);
         }
     }, createStar: function (b, a, d) {
         var c = 6.283185307 / (2 * d);
-        for (i = 0; i < 2 * d; i++) {
+        for (var i = 0; i < 2 * d; i++) {
             if (0 == i % 2) {
                 var f = Math.cos(c * i) * b;
                 var g = Math.sin(c * i) * b;
@@ -981,7 +979,7 @@ OSurface.prototype = {
         }
     }, operation: function (b, a, d) {
         "/" != b && "%" != b || 0 != d || (d = 0.001);
-        newVal = a;
+        var newVal = a;
         switch (b) {
             case "+":
                 newVal = a + d;
@@ -1991,7 +1989,7 @@ CRunSurface.prototype = CServices.extend(new CRunExtension, {
                 break;
             case CRunSurface.ACT_ADD_BACKDROP:
                 e = a.getParamAltValue(this.rh, 0);
-                imgCanvas = this.oSurf.imageList[this.oSurf.selectedImage].canvas;
+                var imgCanvas = this.oSurf.imageList[this.oSurf.selectedImage].canvas;
                 k = new CImage;
                 c = new Image;
                 c.src = imgCanvas.toDataURL();
